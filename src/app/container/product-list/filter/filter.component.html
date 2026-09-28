@@ -1,0 +1,138 @@
+
+<div class="filter-container">
+<!--
+  <div class="filter-header">
+    <h2>Filters</h2>
+    <button class="clear-btn">Clear All</button>
+  </div>
+
+  <!-- Category
+  <div class="filter-section">
+    <h3>Category</h3>
+
+    <label>
+      <input type="checkbox">
+      Mobiles
+    </label>
+
+    <label>
+      <input type="checkbox">
+      Electronics
+    </label>
+
+    <label>
+      <input type="checkbox">
+      Men's Fashion
+    </label>
+
+    <label>
+      <input type="checkbox">
+      Women's Fashion
+    </label>
+
+    <label>
+      <input type="checkbox">
+      Accessories
+    </label>
+  </div>
+
+  <!-- Price 
+  <div class="filter-section">
+    <h3>Price</h3>
+
+    <label>
+      <input type="radio" name="price">
+      Under ₹1,000
+    </label>
+
+    <label>
+      <input type="radio" name="price">
+      ₹1,000 - ₹5,000
+    </label>
+
+    <label>
+      <input type="radio" name="price">
+      ₹5,000 - ₹10,000
+    </label>
+
+    <label>
+      <input type="radio" name="price">
+      Above ₹10,000
+    </label>
+  </div>
+
+  <!-- Rating 
+  <div class="filter-section">
+    <h3>Rating</h3>
+
+    <label>
+      <input type="checkbox">
+      ⭐ 4 & above
+    </label>
+
+    <label>
+      <input type="checkbox">
+      ⭐ 3 & above
+    </label>
+
+    <label>
+      <input type="checkbox">
+      ⭐ 2 & above
+    </label>
+  </div>
+
+  <!-- Availability --
+  <div class="filter-section">
+    <h3>Availability</h3>
+
+    <label>
+      <input type="checkbox">
+      In Stock
+    </label>
+
+    <label>
+      <input type="checkbox">
+      Out of Stock
+    </label>
+  </div>
+
+  <button class="apply-btn">
+    Apply Filters
+  </button>
+-->
+
+<div class="filter">
+
+  <span>Filter:</span>
+
+  <input
+  type="radio"
+  name="filter"
+  value="all"
+  [(ngModel)]="selectedFilterRadioButton"
+  (change)="onSelectedFilterRadioButtonChanged()"
+/>
+  <span>All ({{ all }})</span>
+
+
+  <input
+    type="radio"
+    name="filter"
+    value="true"
+    [(ngModel)]="selectedFilterRadioButton"
+    (change)="onSelectedFilterRadioButtonChanged()"
+  />
+  <span>In Stock ({{ inStock }})</span>
+
+
+  <input
+    type="radio"
+    name="filter"
+    value="false"
+    [(ngModel)]="selectedFilterRadioButton"
+    (change)="onSelectedFilterRadioButtonChanged()"
+  />
+     <span>Out of Stock ({{ outOfStock }})</span>
+       
+</div>
+</div>

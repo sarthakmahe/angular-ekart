@@ -1,0 +1,289 @@
+
+/* ==============================
+   HEADER
+================================= */
+
+.ekart-header {
+  width: 100%;
+  min-height: 90px;
+
+  display: flex;
+  align-items: center;
+
+  border-bottom: 1px solid #e5e4e2;
+  background-color: #ffffff;
+
+  box-sizing: border-box;
+}
+
+
+/* ==============================
+   LOGO
+================================= */
+
+.ekart-logo {
+  width: 20%;
+  padding-left: 60px;
+
+  font-family: "Concert One", cursive;
+  font-size: 40px;
+  font-weight: bold;
+
+  color: #36454f;
+
+  box-sizing: border-box;
+}
+
+
+/* ==============================
+   HEADER NAVIGATION
+================================= */
+
+.ekart-header-nav {
+  width: 80%;
+
+  padding: 8px 30px;
+
+  box-sizing: border-box;
+}
+
+
+
+/* ==============================
+   BOTTOM BAR
+================================= */
+
+.ekart-bottom-bar {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+}
+
+
+/* ==============================
+   MAIN MENU
+================================= */
+
+.ekart-menu {
+  width: 70%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.ekart-menu a {
+  position: relative;
+
+  padding: 8px 14px;
+
+  text-decoration: none;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #36454f;
+
+  transition: color 0.2s ease;
+}
+
+
+/* Hover underline */
+
+.ekart-menu a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 0;
+
+  width: 0;
+  height: 2px;
+
+  background-color: #36454f;
+
+  transform: translateX(-50%);
+
+  transition: width 0.25s ease;
+}
+
+.ekart-menu a:hover {
+  color: #000;
+}
+
+.ekart-menu a:hover::after {
+  width: 70%;
+}
+
+
+/* ==============================
+   SEARCH BAR
+================================= */
+
+.ekart-search-bar {
+  display: flex;
+  align-items: center;
+
+  width: 30%;
+}
+
+
+/* Search Input */
+
+.ekart-search-box {
+  width: 100%;
+  height: 36px;
+
+  padding: 0 12px;
+
+  border: 1px solid #e1e1e1;
+  border-right: none;
+
+  outline: none;
+
+  background-color: #f5f5f5;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+
+  box-sizing: border-box;
+
+  transition: background-color 0.2s ease,
+              border-color 0.2s ease;
+}
+
+.ekart-search-box:focus {
+  background-color: #ffffff;
+  border-color: #bbb;
+}
+
+.ekart-search-box::placeholder {
+  color: #999;
+}
+
+
+/* Search Button */
+
+.ekart-search-btn {
+  width: 40px;
+  height: 36px;
+
+  border: 1px solid #e1e1e1;
+
+  background-color: #f5f5f5;
+
+  cursor: pointer;
+
+  color: #36454f;
+
+  transition: all 0.2s ease;
+}
+
+.ekart-search-btn:hover {
+  background-color: #36454f;
+  color: white;
+}
+
+
+/* ==============================
+   BUTTON
+================================= */
+
+.btn {
+  padding: 12px 25px;
+
+  border: none;
+
+  margin: 10px 0;
+
+  cursor: pointer;
+
+  font-family: "Montserrat", sans-serif;
+}
+
+.btn-primary {
+  background-color: #28282b;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #000;
+}
+
+
+/* ==============================
+   RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 900px) {
+
+  .ekart-header {
+    flex-direction: column;
+    align-items: stretch;
+
+    height: auto;
+  }
+
+  .ekart-logo {
+    width: 100%;
+
+    padding: 15px 20px;
+
+    text-align: center;
+
+    font-size: 34px;
+  }
+
+  .ekart-header-nav {
+    width: 100%;
+
+    padding: 5px 15px 15px;
+  }
+
+  .ekart-top-bar {
+    justify-content: center;
+
+    flex-wrap: wrap;
+  }
+
+  .ekart-bottom-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ekart-menu {
+    width: 100%;
+  }
+
+  .ekart-search-bar {
+    width: 80%;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .ekart-top-bar a {
+    font-size: 10px;
+    padding: 4px 6px;
+  }
+
+  .ekart-menu {
+    flex-wrap: wrap;
+  }
+
+  .ekart-menu a {
+    font-size: 13px;
+    padding: 6px 9px;
+  }
+
+  .ekart-search-bar {
+    width: 100%;
+  }
+}
+

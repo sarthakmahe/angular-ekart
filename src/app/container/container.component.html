@@ -1,0 +1,94 @@
+<app-header
+  (searchChanged)="onSearchChanged($event)">
+</app-header>
+
+<app-filter *ngIf="!selectedProduct"
+  [all]="totalProductCount"
+  [inStock]="totalProductInStock"
+  [outOfStock]="totalProductOutOfStock"
+  (selectedFilterRadioButtonChanged)="onFilterChanged($event)">
+</app-filter>
+
+<div *ngIf="!selectedProduct && filteredProducts.length === 0" class="no-result">
+  <h2>No products found</h2>
+  <p>No product matches "{{ searchText }}"</p>
+</div>
+
+<product-list
+  *ngIf="!selectedProduct"
+  [products]="filteredProducts"
+  (productSelected)="showProductDetails($event)">
+</product-list>
+
+<section *ngIf="selectedProduct as product" class="product-detail">
+  <nav class="detail-breadcrumb" aria-label="Breadcrumb">
+    <button type="button" (click)="showProductList()">Products</button>
+    <span>/</span>
+    <span>{{ product.category }}</span>
+    <span>/</span>
+    <span aria-current="page">{{ product.name }}</span>
+  </nav>
+
+  <div class="product-detail-layout">
+    <div class="product-detail-image">
+      <img [src]="product.image" [alt]="product.name">
+    </div>
+
+    <div class="product-detail-info">
+      <span class="product-category">{{ product.category }} · Item #{{ product.id }}</span>
+      <h1>{{ product.name }}</h1>
+
+      <div class="detail-rating">
+        <span class="detail-stars" aria-label="Rated out of five">★★★★★</span>
+        <strong>{{ product.rating }}</strong>
+        <span>{{ product.reviews }} customer reviews</span>
+      </div>
+
+      <div class="detail-price-block">
+        <div class="detail-price-line">
+          <span class="detail-current-price">₹{{ product.price | number }}</span>
+          <span class="detail-old-price">₹{{ product.oldPrice | number }}</span>
+          <span class="detail-discount">{{ product.discount }}% off</span>
+        </div>
+        <p>You save ₹{{ product.oldPrice - product.price | number }} on this offer</p>
+      </div>
+
+      <p class="detail-stock" [class.available]="product.inStock" [class.low-stock]="!product.inStock">
+        <span class="stock-indicator"></span>
+        {{ product.inStock ? 'In stock and ready to ship' : 'Currently out of stock' }}
+      </p>
+
+      <div class="detail-actions">
+        <button class="cart-btn" type="button" [disabled]="!product.inStock">Add to Cart</button>
+        <button class="buy-btn" type="button" [disabled]="!product.inStock">Buy Now</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="product-information">
+    <section class="product-description">
+      <h2>About this product</h2>
+      <p>{{ product.description }}</p>
+    </section>
+
+    <section class="product-highlights">
+      <h2>Key highlights</h2>
+      <ul>
+        <li *ngFor="let highlight of product.highlights">{{ highlight }}</li>
+      </ul>
+    </section>
+
+    <section class="product-specifications">
+      <h2>Product information</h2>
+      <dl>
+        <div><dt>Category</dt><dd>{{ product.category }}</dd></div>
+        <div><dt>Item number</dt><dd>{{ product.id }}</dd></div>
+        <div><dt>Customer rating</dt><dd>{{ product.rating }} out of 5 ({{ product.reviews }} reviews)</dd></div>
+        <div><dt>Availability</dt><dd>{{ product.inStock ? 'In stock' : 'Out of stock' }}</dd></div>
+      </dl>
+    </section>
+  </div>
+</section>
+
+  
