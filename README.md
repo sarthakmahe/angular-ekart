@@ -1,27 +1,63 @@
-# AngularEkart
+# eKart
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+eKart is a frontend-only Angular shopping demo. Browse a sample product catalog, filter and sort products, save items to a wishlist, and try the cart and checkout flow.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Browse sample products across multiple categories
+- Search, filter, and sort the catalog
+- View product details
+- Add products to a cart and change quantities
+- Save and remove wishlist items
+- Complete a demo checkout with cash on delivery
 
-## Code scaffolding
+## Tech stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 16
+- TypeScript
+- RxJS
+- HTML and CSS
 
-## Build
+## Getting started
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Requirements
 
-## Running unit tests
+- Node.js and npm
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Install and run
 
-## Running end-to-end tests
+```bash
+npm install
+npm start
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Open [http://localhost:4200](http://localhost:4200) in your browser. The development server reloads when source files change.
 
-## Further help
+## Available scripts
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+| Command | Description |
+| --- | --- |
+| `npm start` | Start the local development server |
+| `npm run build` | Build the app for production |
+| `npm test` | Run unit tests with Karma |
+| `npm run watch` | Rebuild when files change |
+
+## Demo limitations
+
+This project currently has no backend or application API. Product information is defined in the frontend, and cart, wishlist, and checkout state are held in browser memory. Orders are not saved, payments are not processed, and the generated order ID is only shown for the current checkout session. Product images, fonts, and icons are loaded from external URLs.
+
+## Project structure
+
+```text
+src/
+  app/
+    cart/                 Cart and checkout UI
+    container/            Product catalog and product details
+    services/             Cart, wishlist, and notification state
+    wishlist/             Wishlist UI
+  assets/
+```
+
+## License
+
+No license is currently specified for this project. Add a `LICENSE` file if you intend to distribute it under a particular license.
