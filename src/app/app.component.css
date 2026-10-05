@@ -1,0 +1,24 @@
+.highlight_product {
+  -webkit-box-shadow: 0 0 1px 3px #000 inset;
+  -moz-box-shadow: 0 0 1px 3px #000 inset;
+  box-shadow: 0 0 1px 3px #000 inset;
+
+  border: 1px solid #ddd;
+  transform: scale(1.05);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  z-index: 50;
+  max-width: 320px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #111827;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}

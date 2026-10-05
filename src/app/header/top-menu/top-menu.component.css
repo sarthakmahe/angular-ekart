@@ -33,7 +33,8 @@
   gap: 25px;
 }
 
-.ekart-top-menu-right a {
+.ekart-top-menu-right a,
+.ekart-top-menu-right button {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -43,11 +44,17 @@
   text-decoration: none;
 
   font-size: 11px;
+  font-family: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
 
   transition: color 0.2s ease;
 }
 
-.ekart-top-menu-right a:hover {
+.ekart-top-menu-right a:hover,
+.ekart-top-menu-right button:hover {
   color: #000;
 }
 

@@ -13,14 +13,14 @@
     <!-- Quick Links -->
     <div class="footer-section">
       <h3>Quick Links</h3>
-      <a href="#">Home</a>
-      <a href="#">Products</a>
-      <a href="#">Cart</a>
-      <a href="#">Wishlist</a>
+      <button type="button" (click)="scrollTop()">Home</button>
+      <button type="button" (click)="scrollTop()">Products</button>
+      <button type="button" (click)="cart.open()">Cart</button>
+      <button type="button" (click)="wishlist.open()">Wishlist</button>
     </div>
 
     <!-- Customer Service -->
-    <div class="footer-section">
+    <div class="footer-section" id="help">
       <h3>Customer Service</h3>
       <a href="#">Contact Us</a>
       <a href="#">FAQs</a>

@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Product } from '../Models/product';
+import { CartService } from '../services/cart.service';
+import { NotificationService } from '../services/notification.service';
+import { WishlistService } from '../services/wishlist.service';
 
 
 @Component({
@@ -8,6 +11,14 @@ import { Product } from '../Models/product';
   styleUrls: ['./container.component.css']
 })
 export class ContainerComponent {
+  @Output() productDetailsVisibleChange = new EventEmitter<boolean>();
+
+  constructor(
+    public wishlist: WishlistService,
+    private cart: CartService,
+    private notification: NotificationService
+  ) {}
+
   products: Product[] = [
 
     {
@@ -193,6 +204,10 @@ export class ContainerComponent {
   ];
 
   selectedProduct: Product | null = null;
+  selectedQuantity = 1;
+  categories = [...new Set(this.products.map(product => product.category))];
+  selectedCategory = 'all';
+  selectedSort = 'default';
 
 
   // =========================
@@ -220,10 +235,50 @@ export class ContainerComponent {
 
   showProductDetails(product: Product) {
     this.selectedProduct = product;
+    this.selectedQuantity = 1;
+    this.productDetailsVisibleChange.emit(true);
+  }
+
+  addSelectedToCart() {
+    if (!this.selectedProduct?.inStock) {
+      return;
+    }
+
+    this.cart.add(this.selectedProduct, this.selectedQuantity);
+    this.notification.show(this.selectedProduct.name + ' added to cart.');
+  }
+
+  buySelectedNow() {
+    if (!this.selectedProduct?.inStock) {
+      return;
+    }
+
+    this.cart.add(this.selectedProduct, this.selectedQuantity);
+    this.cart.open();
+  }
+
+  toggleSelectedWishlist() {
+    if (!this.selectedProduct) {
+      return;
+    }
+
+    const added = this.wishlist.toggle(this.selectedProduct);
+    this.notification.show(added ? 'Saved to wishlist.' : 'Removed from wishlist.');
+  }
+
+  decreaseQuantity() {
+    if (this.selectedQuantity > 1) {
+      this.selectedQuantity -= 1;
+    }
+  }
+
+  increaseQuantity() {
+    this.selectedQuantity += 1;
   }
 
   showProductList() {
     this.selectedProduct = null;
+    this.productDetailsVisibleChange.emit(false);
   }
 
 
@@ -247,6 +302,16 @@ export class ContainerComponent {
 
     this.selectedFilterRadioButton = value;
 
+    this.applyFilters();
+  }
+
+  onCategoryChanged(category: string) {
+    this.selectedCategory = category;
+    this.applyFilters();
+  }
+
+  onSortChanged(sort: string) {
+    this.selectedSort = sort;
     this.applyFilters();
   }
 
@@ -283,10 +348,23 @@ export class ContainerComponent {
         );
 
 
-      // Both conditions must be true
-      return matchesSearch && matchesStock;
+      const matchesCategory =
+        this.selectedCategory === 'all' ||
+        product.category === this.selectedCategory;
+
+      return matchesSearch && matchesStock && matchesCategory;
 
     });
+
+    if (this.selectedSort === 'price-asc') {
+      this.filteredProducts = [...this.filteredProducts].sort((a, b) => a.price - b.price);
+    } else if (this.selectedSort === 'price-desc') {
+      this.filteredProducts = [...this.filteredProducts].sort((a, b) => b.price - a.price);
+    } else if (this.selectedSort === 'rating') {
+      this.filteredProducts = [...this.filteredProducts].sort((a, b) => b.rating - a.rating);
+    } else if (this.selectedSort === 'discount') {
+      this.filteredProducts = [...this.filteredProducts].sort((a, b) => b.discount - a.discount);
+    }
 
   }
 

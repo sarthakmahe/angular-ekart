@@ -26,6 +26,7 @@
           class="ekart-search-box"
           placeholder="Search products..."
           #searchInput
+          (keyup.enter)="updateSearchText()"
         />
 
         <div class="search-box">
@@ -37,6 +38,11 @@
 
           <i class="fa fa-search" aria-hidden="true"></i>
 
+        </button>
+
+        <button type="button" class="ekart-cart-btn" (click)="cart.open()" aria-label="Open cart">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          <span class="cart-count" *ngIf="(cart.itemCount$ | async) as count">{{ count }}</span>
         </button>
 
       </div>

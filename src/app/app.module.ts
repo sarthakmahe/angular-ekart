@@ -10,6 +10,12 @@ import { ProductListComponent } from './container/product-list/product-list.comp
 import { FooterComponent } from './footer/footer.component';
 import { FilterComponent } from './container/product-list/filter/filter.component';
 import { FormsModule } from '@angular/forms';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { SetBackground } from './CustomDirective/SetBackground.directive';
+import { HighlightDirective } from './CustomDirective/highlight.directive';
+import { AppHoverDirective } from'./CustomDirective/app-hover.directive';
+import { CartComponent } from './cart/cart.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,14 @@ import { FormsModule } from '@angular/forms';
     ContainerComponent,
     ProductListComponent,
     FooterComponent,
-    FilterComponent
+    FilterComponent,
+    AboutUsComponent,
+    SetBackground,
+    HighlightDirective,
+    AppHoverDirective,
+    CartComponent,
+    WishlistComponent
+
   ],
   imports: [
     BrowserModule,

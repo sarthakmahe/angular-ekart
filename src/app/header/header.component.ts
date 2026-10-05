@@ -5,6 +5,7 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,8 @@ export class HeaderComponent {
   searchChanged = new EventEmitter<string>();
 
   searchText: string = '';
+
+  constructor(public cart: CartService) {}
 
   updateSearchText() {
     this.searchText = this.searchInputEl.nativeElement.value;

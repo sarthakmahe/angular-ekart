@@ -131,3 +131,40 @@
   cursor: pointer;
   margin-right: 12px;
 }
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.extra-filters {
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: #fff;
+  color: #444;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.chip.active {
+  border-color: #1f2937;
+  background: #1f2937;
+  color: #fff;
+}
+
+.extra-filters select {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+}

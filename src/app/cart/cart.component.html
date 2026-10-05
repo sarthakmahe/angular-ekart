@@ -1,0 +1,72 @@
+<div class="drawer-backdrop" *ngIf="cart.isOpen$ | async" (click)="close()"></div>
+
+<aside class="drawer" *ngIf="cart.isOpen$ | async" role="dialog" aria-label="Shopping cart" (click)="$event.stopPropagation()">
+  <header class="drawer-header">
+    <h2>{{ step === 'success' ? 'Order placed' : step === 'checkout' ? 'Checkout' : 'Your cart' }}</h2>
+    <button type="button" class="icon-close" (click)="close()" aria-label="Close cart">×</button>
+  </header>
+
+  <ng-container *ngIf="step === 'cart'">
+    <ng-container *ngIf="cart.items$ | async as items">
+      <div class="drawer-body" *ngIf="items.length; else emptyCart">
+        <article class="cart-row" *ngFor="let item of items">
+          <img [src]="item.product.image" [alt]="item.product.name">
+          <div class="cart-row-info">
+            <h3>{{ item.product.name }}</h3>
+            <p>₹{{ item.product.price | number }}</p>
+            <div class="qty-controls">
+              <button type="button" (click)="cart.updateQuantity(item.product.id, item.quantity - 1)" aria-label="Decrease quantity">−</button>
+              <span>{{ item.quantity }}</span>
+              <button type="button" (click)="cart.updateQuantity(item.product.id, item.quantity + 1)" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <div class="cart-row-side">
+            <strong>₹{{ item.product.price * item.quantity | number }}</strong>
+            <button type="button" class="link-btn" (click)="cart.remove(item.product.id)">Remove</button>
+          </div>
+        </article>
+      </div>
+
+      <ng-template #emptyCart>
+        <div class="empty-state">
+          <p>Your cart is empty.</p>
+          <button type="button" class="primary-btn" (click)="close()">Browse products</button>
+        </div>
+      </ng-template>
+
+      <footer class="drawer-footer" *ngIf="items.length">
+        <div class="total-line">
+          <span>Total</span>
+          <strong>₹{{ cart.total | number }}</strong>
+        </div>
+        <button type="button" class="primary-btn" (click)="startCheckout()">Proceed to checkout</button>
+      </footer>
+    </ng-container>
+  </ng-container>
+
+  <form class="checkout-form" *ngIf="step === 'checkout'" (ngSubmit)="placeOrder()">
+    <label>
+      Full name
+      <input type="text" name="name" [(ngModel)]="customerName" autocomplete="name">
+    </label>
+    <label>
+      Phone
+      <input type="tel" name="phone" [(ngModel)]="customerPhone" autocomplete="tel">
+    </label>
+    <label>
+      Delivery address
+      <textarea name="address" rows="3" [(ngModel)]="customerAddress"></textarea>
+    </label>
+    <p class="pay-note">Payment: Cash on delivery</p>
+    <div class="checkout-actions">
+      <button type="button" class="ghost-btn" (click)="step = 'cart'">Back to cart</button>
+      <button type="submit" class="primary-btn">Place order · ₹{{ cart.total | number }}</button>
+    </div>
+  </form>
+
+  <div class="empty-state" *ngIf="step === 'success'">
+    <p>Thanks for shopping with eKart.</p>
+    <p class="order-id">Order ID: {{ orderId }}</p>
+    <button type="button" class="primary-btn" (click)="continueShopping()">Continue shopping</button>
+  </div>
+</aside>

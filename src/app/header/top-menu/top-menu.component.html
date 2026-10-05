@@ -6,22 +6,23 @@
 
   <div class="ekart-top-menu-right">
 
-    <a href="#">
+    <button type="button" (click)="trackOrder()">
       <i class="fa fa-map-marker"></i>
       Track Order
-    </a>
+    </button>
 
-    <a href="#">
+    <a href="#help">
       <i class="fa fa-question-circle"></i>
       Help
     </a>
 
-    <a href="#">
+    <button type="button" (click)="wishlist.open()">
       <i class="fa fa-heart"></i>
       Wishlist
-    </a>
+      <span class="menu-count" *ngIf="(wishlist.count$ | async) as count">({{ count }})</span>
+    </button>
 
-    <a href="#">
+    <a href="#about">
       <i class="fa fa-user"></i>
       Sign In / Register
     </a>

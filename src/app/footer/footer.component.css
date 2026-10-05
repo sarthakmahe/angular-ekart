@@ -34,13 +34,21 @@
   margin: 5px 0;
 }
 
-.footer-section a {
+.footer-section a,
+.footer-section button {
   color: #ccc;
   text-decoration: none;
   margin: 6px 0;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
 }
 
-.footer-section a:hover {
+.footer-section a:hover,
+.footer-section button:hover {
   color: #ff9800;
 }
 

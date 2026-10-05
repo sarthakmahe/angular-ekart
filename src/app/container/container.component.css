@@ -130,8 +130,48 @@
   z-index: 2;
 }
 
-.wishlist-btn:hover {
+.wishlist-btn:hover,
+.wishlist-btn.active {
   color: #e53935;
+}
+
+.detail-qty {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 8px 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.qty-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-controls button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+.detail-wishlist {
+  margin-top: 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #555;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.detail-wishlist.active {
+  color: #e53935;
+  font-weight: 600;
 }
 
 
@@ -297,35 +337,40 @@
 .cart-btn {
   background: white;
 
-  border: 1px solid #2874f0;
+  border: 1px solid #f59e0b;
 
-  color: #2874f0;
+  color: #b45309;
 }
 
 .cart-btn:hover {
-  background: #2874f0;
-  color: white;
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #111827;
 }
 
-
-/* Buy Now */
+.cart-btn:focus-visible,
+.buy-btn:focus-visible {
+  outline: 2px solid #111827;
+  outline-offset: 2px;
+}
 
 .buy-btn {
-  background: #2874f0;
-
-  border: 1px solid #2874f0;
-
-  color: white;
+  background: #f59e0b;
+  border: 1px solid #f59e0b;
+  color: #111827;
 }
 
 .buy-btn:hover {
-  background: #1557b0;
+  background: #d97706;
+  border-color: #d97706;
+  color: white;
 }
 
 
 /* Disabled Button */
 
-.product-actions button:disabled {
+.product-actions button:disabled,
+.detail-actions button:disabled {
   background: #eee;
   border-color: #ddd;
   color: #999;
@@ -581,8 +626,33 @@
 }
 
 .detail-actions button {
-  min-height: 46px;
-  font-size: 14px;
+  flex: 1;
+  min-height: 56px;
+  padding: 12px 18px;
+  font-size: 16px;
+}
+
+.detail-actions .cart-btn {
+  background: #f3f4f6;
+  border-color: #4b5563;
+  color: #1f2937;
+}
+
+.detail-actions .cart-btn:not(:disabled):hover {
+  background: #d1d5db;
+  border-color: #374151;
+  color: #111827;
+}
+
+.detail-actions .buy-btn {
+  background: #1f2937;
+  border-color: #1f2937;
+  color: white;
+}
+
+.detail-actions .buy-btn:not(:disabled):hover {
+  background: #374151;
+  border-color: #374151;
 }
 
 .product-information {

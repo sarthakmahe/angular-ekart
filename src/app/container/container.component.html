@@ -6,7 +6,10 @@
   [all]="totalProductCount"
   [inStock]="totalProductInStock"
   [outOfStock]="totalProductOutOfStock"
-  (selectedFilterRadioButtonChanged)="onFilterChanged($event)">
+  [categories]="categories"
+  (selectedFilterRadioButtonChanged)="onFilterChanged($event)"
+  (categoryChanged)="onCategoryChanged($event)"
+  (sortChanged)="onSortChanged($event)">
 </app-filter>
 
 <div *ngIf="!selectedProduct && filteredProducts.length === 0" class="no-result">
@@ -58,10 +61,27 @@
         {{ product.inStock ? 'In stock and ready to ship' : 'Currently out of stock' }}
       </p>
 
-      <div class="detail-actions">
-        <button class="cart-btn" type="button" [disabled]="!product.inStock">Add to Cart</button>
-        <button class="buy-btn" type="button" [disabled]="!product.inStock">Buy Now</button>
+      <div class="detail-qty" *ngIf="product.inStock">
+        <span>Quantity</span>
+        <div class="qty-controls">
+          <button type="button" (click)="decreaseQuantity()" aria-label="Decrease quantity">−</button>
+          <span>{{ selectedQuantity }}</span>
+          <button type="button" (click)="increaseQuantity()" aria-label="Increase quantity">+</button>
+        </div>
       </div>
+
+      <div class="detail-actions">
+        <button class="cart-btn" type="button" [disabled]="!product.inStock" (click)="addSelectedToCart()">Add to Cart</button>
+        <button class="buy-btn" type="button" [disabled]="!product.inStock" (click)="buySelectedNow()">Buy Now</button>
+      </div>
+
+      <button
+        type="button"
+        class="detail-wishlist"
+        [class.active]="wishlist.has(product.id)"
+        (click)="toggleSelectedWishlist()">
+        {{ wishlist.has(product.id) ? '♥ Saved to wishlist' : '♡ Add to wishlist' }}
+      </button>
 
     </div>
   </div>

@@ -1,0 +1,10 @@
+.highlight_product {
+  -webkit-box-shadow: 0 0 1px 3px #000 inset;
+  -moz-box-shadow: 0 0 1px 3px #000 inset;
+  box-shadow: 0 0 1px 3px #000 inset;
+
+  border: 1px solid #ddd;
+  transform: scale(1.05);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}

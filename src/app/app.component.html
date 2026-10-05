@@ -1,7 +1,12 @@
 <top-header></top-header>
 <top-menu></top-menu>
 
-<app-container></app-container>
+<app-container (productDetailsVisibleChange)="isProductDetailsVisible = $event"></app-container>
+<app-about-us *ngIf="!isProductDetailsVisible"></app-about-us>
 <app-footer></app-footer>
+<app-cart></app-cart>
+<app-wishlist></app-wishlist>
 
-
+<div class="toast" *ngIf="notifications.message$ | async as message">
+  {{ message }}
+</div>
